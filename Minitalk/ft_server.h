@@ -22,9 +22,9 @@
 
 // ft_server.c
 
-int			main(void);
-void		ft_sigaction(int signo, siginfo_t *info, void *context);
-void		ft_print(char **msg, int *len, int *i);
+int		main(void);
+void	ft_sigaction(int signo, siginfo_t *info, void *context);
+void	ft_print(char **msg, int *len, int *i);
 
 // ft_server_next.c
 
