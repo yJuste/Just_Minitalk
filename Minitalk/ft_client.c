@@ -67,7 +67,7 @@ void	ft_send_length(pid_t pid, int len, int delay)
 		else
 			kill(pid, SIGUSR1);
 		len = len >> 1;
-		usleep(delay * 1000);
+		usleep(delay * 100);
 		i++;
 	}
 }
@@ -84,7 +84,7 @@ void	ft_send_message(pid_t pid, char *msg, int delay)
 		j = 7;
 		while (j >= 0)
 		{
-			usleep(delay * 1000);
+			usleep(delay * 100);
 			if (msg[i] & (1 << j))
 				kill(pid, SIGUSR2);
 			else

@@ -57,7 +57,7 @@ void	ft_print(pid_t pid, char **msg, int *len, int *i)
 {
 	write(1, *msg, ft_strlen(*msg));
 	write(1, "\n", 1);
-	usleep(50 * 1000);
+	usleep(50 * 100);
 	kill(pid, SIGUSR1);
 	free(*msg);
 	*msg = NULL;
