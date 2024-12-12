@@ -10,7 +10,6 @@ SRC_SERVER =	ft_server.c		\
 		ft_server_next.c	\
 		ft_server_lib.c
 SRC_CLIENT =	ft_client.c		\
-		ft_client_next.c	\
 		ft_client_lib.c
 
 OBJ_SERVER = $(SRC_SERVER:.c=.o)

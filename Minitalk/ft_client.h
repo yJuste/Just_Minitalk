@@ -22,13 +22,15 @@
 
 // ft_client.c
 
+int		main(int argc, char **argv);
+int		ft_client_next(pid_t pid, char **argv, int len, int delay);
+void	ft_send_length(pid_t pid, int len, int delay);
+void	ft_send_message(pid_t pid, char *msg, int delay);
+void	ft_header_client(void);
+
 // ft_client_lib.c
 
 int		ft_atoi(const char *str);
 size_t	ft_strlen(const char *s);
-
-// ft_client_next.c
-
-void	ft_header_client(void);
 
 #endif

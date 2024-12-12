@@ -44,7 +44,7 @@ void	ft_sigaction(int signo, siginfo_t *info, void *context)
 		len = ft_length(signo, len);
 	else if (i == 31)
 		msg = ft_alloc(len);
-	else if (i <= len * 8 + 32)
+	else if (i < len * 8 + 32)
 		ft_fill(&msg, &i, signo);
 	i++;
 	if (i == len * 8 + 32)
@@ -54,6 +54,7 @@ void	ft_sigaction(int signo, siginfo_t *info, void *context)
 void	ft_print(char **msg, int *len, int *i)
 {
 	write(1, *msg, ft_strlen(*msg));
+	write(1, "\n", 1);
 	free(*msg);
 	*msg = NULL;
 	*len = 0;
