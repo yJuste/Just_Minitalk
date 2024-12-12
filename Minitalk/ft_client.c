@@ -48,15 +48,9 @@ int	ft_client_next(char **argv)
 	if (pid == 0 || kill(pid, 0))
 		return (write(1, "Invalid pid.\n", 13), 3);
 	len = ft_strlen(argv[2]);
-	delay = 7;
-	if (len > 3000)
-		delay = 15;
+	delay = 50;
 	if (len > 10000)
-		delay = 35;
-	if (len > 25000)
-		delay = 60;
-	if (len > 50000)
-		delay = 100;
+		delay = 150;
 	ft_send_length(pid, len, delay);
 	ft_send_message(pid, argv[2], delay);
 	pause();
