@@ -27,6 +27,8 @@ $(NAME): $(OBJ_SERVER) $(OBJ_CLIENT)
 	@echo $(GREEN)"--- EXECUTABLE ./$(SERVER) is ready ---"$(RESET)
 	@echo $(GREEN)"--- EXECUTABLE ./$(CLIENT) is ready ---"$(RESET)
 
+bonus: $(NAME)
+
 $(SERVER): $(OBJ_SERVER)
 	@$(CC) $(CFLAGS) -o $(SERVER) $(OBJ_SERVER)
 	@echo $(GREEN)"--- EXECUTABLE ./$(SERVER) is ready ---"$(RESET)
