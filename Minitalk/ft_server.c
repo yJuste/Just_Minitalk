@@ -16,7 +16,7 @@
 // ---------------------------PROTOTYPE-------------------------
 int		main(void);
 void	ft_sigaction(int signo, siginfo_t *info, void *context);
-void	ft_print(char **msg, int *len, int *i);
+void	ft_print(pid_t pid, char **msg, int *len, int *i);
 // -------------------------------------------------------------
 
 int	main(void)
@@ -40,7 +40,6 @@ void	ft_sigaction(int signo, siginfo_t *info, void *context)
 	static int	len = 0;
 	static char	*msg = NULL;
 
-	(void)info;
 	(void)context;
 	if (i <= 30)
 		len = ft_length(signo, len);
@@ -50,13 +49,14 @@ void	ft_sigaction(int signo, siginfo_t *info, void *context)
 		ft_fill(&msg, &i, signo);
 	i++;
 	if (i == len * 8 + 32)
-		ft_print(&msg, &len, &i);
+		ft_print(info->si_pid, &msg, &len, &i);
 }
 
-void	ft_print(char **msg, int *len, int *i)
+void	ft_print(pid_t pid, char **msg, int *len, int *i)
 {
 	write(1, *msg, ft_strlen(*msg));
 	write(1, "\n", 1);
+	kill(pid, SIGUSR1);
 	free(*msg);
 	*msg = NULL;
 	*len = 0;
