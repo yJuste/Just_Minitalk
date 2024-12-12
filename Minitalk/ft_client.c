@@ -46,7 +46,7 @@ int	ft_client_next(char **argv)
 	if (pid == 0 || kill(pid, 0))
 		return (write(1, "Invalid pid.\n", 13), 3);
 	len = ft_strlen(argv[2]);
-	delay = 50;
+	delay = 500;
 	if (len > 3000)
 		delay = 120;
 	ft_send_length(pid, len, delay);
@@ -67,7 +67,7 @@ void	ft_send_length(pid_t pid, int len, int delay)
 		else
 			kill(pid, SIGUSR1);
 		len = len >> 1;
-		usleep(delay * 100);
+		usleep(delay);
 		i++;
 	}
 }
@@ -84,7 +84,7 @@ void	ft_send_message(pid_t pid, char *msg, int delay)
 		j = 7;
 		while (j >= 0)
 		{
-			usleep(delay * 100);
+			usleep(delay);
 			if (msg[i] & (1 << j))
 				kill(pid, SIGUSR2);
 			else
