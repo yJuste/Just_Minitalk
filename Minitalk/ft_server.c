@@ -52,6 +52,7 @@ void	ft_sigaction(int signo, siginfo_t *info, void *context)
 		ft_print(info->si_pid, &msg, &len, &i);
 }
 
+// bonus : kill() l.3
 void	ft_print(pid_t pid, char **msg, int *len, int *i)
 {
 	write(1, *msg, ft_strlen(*msg));

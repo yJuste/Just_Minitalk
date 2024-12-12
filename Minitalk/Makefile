@@ -4,7 +4,7 @@ SERVER = server
 CLIENT = client
 
 CC = cc
-CFLAGS = -g
+CFLAGS = -Wall -Wextra -Werror
 
 SRC_SERVER =	ft_server.c		\
 		ft_server_next.c	\
@@ -56,10 +56,10 @@ s:
 
 help:
 	@echo $(GREEN)
-	@head -n 11 ft_server.c
+	@head -n 13 ft_server.c
 	@echo $(RESET)
 	@echo $(GREEN)
-	@head -n 11 ft_client.c
+	@head -n 13 ft_client.c
 	@echo $(RESET)
 
 .PHONY: all clean fclean re rf s help

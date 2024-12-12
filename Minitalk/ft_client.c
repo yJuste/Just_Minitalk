@@ -9,36 +9,39 @@
 /*   Updated:   by Just'                              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+/*                                                                   CLIENT   */
+/* ************************************************************************** */
 #include "ft_client.h"
 
-// ---------------------------------PROTOTYPE------------------------------
+// ----------------------PROTOTYPE-----------------------
 int		main(int argc, char **argv);
-int		ft_client_next(pid_t pid, char **argv, int len, int delay);
+int		ft_client_next(char **argv);
 void	ft_send_length(pid_t pid, int len, int delay);
 void	ft_send_message(pid_t pid, char *msg, int delay);
 void	ft_signal_handler(int signo);
-// ------------------------------------------------------------------------
+// ------------------------------------------------------
 
 int	main(int argc, char **argv)
 {
-	pid_t		pid;
-	int			len;
-	int			delay;
-
 	if (argc < 3)
 		return (write(2, "Too few arguments.\n", 19), 1);
 	if (argc > 3)
 		return (write(2, "Too many arguments.\n", 20), 2);
 	if (argc == 3)
 	{
-		if (ft_client_next(pid, argv, len, delay) == 3)
+		if (ft_client_next(argv) == 3)
 			return (3);
 	}
 	return (0);
 }
 
-int	ft_client_next(pid_t pid, char **argv, int len, int delay)
+// bonus : signal() l.18 | pause() l.21
+int	ft_client_next(char **argv)
 {
+	pid_t		pid;
+	int			len;
+	int			delay;
+
 	pid = ft_atoi(argv[1]);
 	if (pid == 0 || kill(pid, 0))
 		return (write(1, "Invalid pid.\n", 13), 3);
@@ -99,6 +102,7 @@ void	ft_send_message(pid_t pid, char *msg, int delay)
 	}
 }
 
+// bonus : ft_signal_handler
 void	ft_signal_handler(int signo)
 {
 	if (signo)
