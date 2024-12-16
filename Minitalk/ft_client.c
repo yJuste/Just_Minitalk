@@ -36,8 +36,10 @@ int	main(int argc, char **argv)
 }
 
 // bonus : signal() l.18 | pause() l.21
-// Delays is way long with 42's pcs, in my Mac it's : ..->7,
-//	len>3000->15, len>10000->35, len>25000->60, len>50000->100
+// Delays is way long with 42's pcs, in my Mac it's :
+//	..->15, len>10000->35, len>25000->60, len>50000->100
+// Don't start an other app like Youtube or something like this
+// 'cause it disrupts the signals.
 int	ft_client_next(char **argv)
 {
 	pid_t		pid;
@@ -48,9 +50,7 @@ int	ft_client_next(char **argv)
 	if (pid == 0 || kill(pid, 0))
 		return (write(1, "Invalid pid.\n", 13), 3);
 	len = ft_strlen(argv[2]);
-	delay = 7;
-	if (len > 3000)
-		delay = 15;
+	delay = 15;
 	if (len > 10000)
 		delay = 35;
 	if (len > 25000)
