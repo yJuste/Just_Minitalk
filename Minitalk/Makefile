@@ -16,8 +16,8 @@ OBJ_SERVER = $(SRC_SERVER:.c=.o)
 OBJ_CLIENT = $(SRC_CLIENT:.c=.o)
 
 RESET		= "\033[0m"
-GREEN		= "\033[32m"	# Green
-RED		= "\033[31m"	# Red
+GREEN		= "\033[92m"	# Green
+RED		= "\033[91m"	# Red
 
 all: $(NAME)
 
