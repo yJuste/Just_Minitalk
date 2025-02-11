@@ -33,7 +33,7 @@ void		ft_print(pid_t pid, char **msg, int *len, int *i);
 
 // ft_server_next.c
 
-int			ft_length(int signo, int len);
+int			ft_length(int signo, int len, pid_t pid);
 char		*ft_alloc(int len);
 void		ft_fill(char **msg, int *i, int signo, pid_t pid);
 void		ft_header_server(pid_t pid);

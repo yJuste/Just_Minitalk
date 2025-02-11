@@ -45,7 +45,7 @@ void	ft_sigaction(int signo, siginfo_t *info, void *context)
 
 	(void)context;
 	if (i <= 30)
-		len = ft_length(signo, len);
+		len = ft_length(signo, len, info->si_pid);
 	else if (i == 31)
 		msg = ft_alloc(len);
 	else if (i < len * 8 + 32)

@@ -12,18 +12,19 @@
 #include "ft_server.h"
 
 // ---------------------------PROTOTYPE---------------------------
-int			ft_length(int signo, int len);
+int			ft_length(int signo, int len, pid_t pid);
 char		*ft_alloc(int len);
 void		ft_fill(char **msg, int *i, int signo, pid_t pid);
 void		ft_header_server(pid_t pid);
 void		ft_print_pid(pid_t pid);
 // ---------------------------------------------------------------
 
-int	ft_length(int signo, int len)
+int	ft_length(int signo, int len, pid_t pid)
 {
 	len = len >> 1;
 	if (signo == SIGUSR2)
 		len |= 1 << 30;
+	kill(pid, SIGUSR2);
 	return (len);
 }
 
