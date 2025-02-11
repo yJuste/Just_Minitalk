@@ -11,13 +11,16 @@
 /* ************************************************************************** */
 /*                                                                   SERVER   */
 /* ************************************************************************** */
+/*   • ./server                                                               */
+/*   • Le serveur va donner son propre pid.                                   */
+/* ************************************************************************** */
 #include "ft_server.h"
 
-// ---------------------------PROTOTYPE-------------------------
-int		main(void);
-void	ft_sigaction(int signo, siginfo_t *info, void *context);
-void	ft_print(pid_t pid, char **msg, int *len, int *i);
-// -------------------------------------------------------------
+// -------------------------------PROTOTYPE-----------------------------
+int			main(void);
+void		ft_sigaction(int signo, siginfo_t *info, void *context);
+void		ft_print(pid_t pid, char **msg, int *len, int *i);
+// ---------------------------------------------------------------------
 
 int	main(void)
 {
@@ -46,7 +49,7 @@ void	ft_sigaction(int signo, siginfo_t *info, void *context)
 	else if (i == 31)
 		msg = ft_alloc(len);
 	else if (i < len * 8 + 32)
-		ft_fill(&msg, &i, signo);
+		ft_fill(&msg, &i, signo, info->si_pid);
 	i++;
 	if (i == len * 8 + 32)
 		ft_print(info->si_pid, &msg, &len, &i);

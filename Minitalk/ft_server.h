@@ -9,6 +9,11 @@
 /*   Updated:   by Just'                              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+/*                                                                   SERVER   */
+/* ************************************************************************** */
+/*   • ./server                                                               */
+/*   • Le serveur va donner son propre pid.                                   */
+/* ************************************************************************** */
 #ifndef FT_SERVER_H
 # define FT_SERVER_H
 
@@ -30,7 +35,7 @@ void		ft_print(pid_t pid, char **msg, int *len, int *i);
 
 int			ft_length(int signo, int len);
 char		*ft_alloc(int len);
-void		ft_fill(char **msg, int *i, int signo);
+void		ft_fill(char **msg, int *i, int signo, pid_t pid);
 void		ft_header_server(pid_t pid);
 void		ft_print_pid(pid_t pid);
 

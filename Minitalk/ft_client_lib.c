@@ -11,10 +11,10 @@
 /* ************************************************************************** */
 #include "ft_client.h"
 
-// ---------------PROTOTYPE--------------
-int		ft_atoi(const char *str);
-size_t	ft_strlen(const char *s);
-// --------------------------------------
+// -------------------PROTOTYPE------------------
+int			ft_atoi(const char *str);
+size_t		ft_strlen(const char *s);
+// ----------------------------------------------
 
 int	ft_atoi(const char *str)
 {

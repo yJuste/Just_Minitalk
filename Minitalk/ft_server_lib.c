@@ -11,12 +11,12 @@
 /* ************************************************************************** */
 #include "ft_server.h"
 
-// ------------------PROTOTYPE----------------
-void	*ft_calloc(size_t count, size_t size);
-void	ft_putnbr(int n);
-int		ft_intlen(long n);
-size_t	ft_strlen(const char *s);
-// -------------------------------------------
+// ----------------------PROTOTYPE--------------------
+void		*ft_calloc(size_t count, size_t size);
+void		ft_putnbr(int n);
+int			ft_intlen(long n);
+size_t		ft_strlen(const char *s);
+// ---------------------------------------------------
 
 void	*ft_calloc(size_t count, size_t size)
 {

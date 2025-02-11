@@ -11,13 +11,13 @@
 /* ************************************************************************** */
 #include "ft_server.h"
 
-// -----------------PROTOTYPE------------------
-int		ft_length(int signo, int len);
-char	*ft_alloc(int len);
-void	ft_fill(char **msg, int *i, int signo);
-void	ft_header_server(pid_t pid);
-void	ft_print_pid(pid_t pid);
-// --------------------------------------------
+// ---------------------------PROTOTYPE---------------------------
+int			ft_length(int signo, int len);
+char		*ft_alloc(int len);
+void		ft_fill(char **msg, int *i, int signo, pid_t pid);
+void		ft_header_server(pid_t pid);
+void		ft_print_pid(pid_t pid);
+// ---------------------------------------------------------------
 
 int	ft_length(int signo, int len)
 {
@@ -41,7 +41,7 @@ char	*ft_alloc(int len)
 	return (msg);
 }
 
-void	ft_fill(char **msg, int *i, int signo)
+void	ft_fill(char **msg, int *i, int signo, pid_t pid)
 {
 	int		j;
 	int		k;
@@ -50,6 +50,7 @@ void	ft_fill(char **msg, int *i, int signo)
 	k = (*i - 32) % 8;
 	if (signo == SIGUSR2)
 		(*msg)[j] |= (1 << (7 - k));
+	kill(pid, SIGUSR2);
 }
 
 //	---------- HEADER ----------

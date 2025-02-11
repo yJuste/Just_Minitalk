@@ -11,15 +11,18 @@
 /* ************************************************************************** */
 /*                                                                   CLIENT   */
 /* ************************************************************************** */
+/*   • ./client [ PID ] [ Message ]                                           */
+/*      -> PID : donné par le serveur.                                        */
+/* ************************************************************************** */
 #include "ft_client.h"
 
-// ----------------------PROTOTYPE-----------------------
-int		main(int argc, char **argv);
-int		ft_client_next(char **argv);
-void	ft_send_length(pid_t pid, int len, int delay);
-void	ft_send_message(pid_t pid, char *msg, int delay);
-void	ft_signal_handler(int signo);
-// ------------------------------------------------------
+// --------------------------PROTOTYPE---------------------------
+int			main(int argc, char **argv);
+int			ft_client_next(char **argv);
+void		ft_send_length(pid_t pid, int len, int delay);
+void		ft_send_message(pid_t pid, char *msg, int delay);
+void		ft_signal_handler(int signo);
+// --------------------------------------------------------------
 
 int	main(int argc, char **argv)
 {
@@ -51,12 +54,6 @@ int	ft_client_next(char **argv)
 		return (write(1, "Invalid pid.\n", 13), 3);
 	len = ft_strlen(argv[2]);
 	delay = 15;
-	if (len > 10000)
-		delay = 35;
-	if (len > 25000)
-		delay = 60;
-	if (len > 50000)
-		delay = 100;
 	signal(SIGUSR1, ft_signal_handler);
 	ft_send_length(pid, len, delay);
 	ft_send_message(pid, argv[2], delay);
@@ -88,6 +85,7 @@ void	ft_send_message(pid_t pid, char *msg, int delay)
 
 	i = 0;
 	j = 0;
+	signal(SIGUSR2, ft_signal_handler);
 	while (msg[i])
 	{
 		j = 7;
@@ -98,6 +96,7 @@ void	ft_send_message(pid_t pid, char *msg, int delay)
 				kill(pid, SIGUSR2);
 			else
 				kill(pid, SIGUSR1);
+			pause();
 			j--;
 		}
 		i++;
@@ -107,6 +106,6 @@ void	ft_send_message(pid_t pid, char *msg, int delay)
 // bonus : ft_signal_handler
 void	ft_signal_handler(int signo)
 {
-	if (signo)
+	if (signo == SIGUSR1)
 		write(1, "Message received\n", 17);
 }
