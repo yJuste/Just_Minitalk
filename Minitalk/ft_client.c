@@ -52,8 +52,8 @@ int	ft_client_next(char **argv)
 	pid = ft_atoi(argv[1]);
 	if (pid == 0 || kill(pid, 0))
 		return (write(1, "Invalid pid.\n", 13), 3);
-	len = ft_strlen(argv[2]);
 	delay = 15;
+	len = ft_strlen(argv[2]);
 	signal(SIGUSR1, ft_signal_handler);
 	ft_send_length(pid, len, delay);
 	ft_send_message(pid, argv[2], delay);

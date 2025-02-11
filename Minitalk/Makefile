@@ -25,18 +25,18 @@ all: $(NAME)
 $(NAME): $(OBJ_SERVER) $(OBJ_CLIENT)
 	@$(CC) $(CFLAGS) -o $(SERVER) $(OBJ_SERVER)
 	@$(CC) $(CFLAGS) -o $(CLIENT) $(OBJ_CLIENT)
-	@echo $(GREEN)"--- EXECUTABLE ./$(SERVER) is ready ---`make help`"$(RESET)
-	@echo $(GREEN)"--- EXECUTABLE ./$(CLIENT) is ready ---"$(RESET)
+	@echo $(GREEN)"--- EXECUTABLE ./$(SERVER) is ready ---`make help_server`"$(RESET)
+	@echo $(GREEN)"--- EXECUTABLE ./$(CLIENT) is ready ---`make help_client`"$(RESET)
 
 bonus: $(NAME)
 
 $(SERVER): $(OBJ_SERVER)
 	@$(CC) $(CFLAGS) -o $(SERVER) $(OBJ_SERVER)
-	@echo $(GREEN)"--- EXECUTABLE ./$(SERVER) is ready ---`make help`"$(RESET)
+	@echo $(GREEN)"--- EXECUTABLE ./$(SERVER) is ready ---`make help_server`"$(RESET)
 
 $(CLIENT): $(OBJ_CLIENT)
 	@$(CC) $(CFLAGS) -o $(CLIENT) $(OBJ_CLIENT)
-	@echo $(GREEN)"--- EXECUTABLE ./$(CLIENT) is ready ---`make help`"$(RESET)
+	@echo $(GREEN)"--- EXECUTABLE ./$(CLIENT) is ready ---`make help_client`"$(RESET)
 
 clean:
 	@rm -f $(OBJ_SERVER) $(OBJ_CLIENT)
@@ -57,10 +57,12 @@ rf: re
 s:
 	ls -lh $(SERVER) $(CLIENT)
 
-help:
+help_server:
 	@echo $(GREEN)
 	@head -n 16 ft_server.c
 	@echo $(RESET)
+
+help_client:
 	@echo $(GREEN)
 	@head -n 16 ft_client.c
 	@echo $(RESET)
