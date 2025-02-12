@@ -13,9 +13,12 @@
 
 // -------------------PROTOTYPE------------------
 void		ft_send_signal(void);
+void		ft_signal_handler(int signo);
 int			ft_atoi(const char *str);
 size_t		ft_strlen(const char *s);
 // ----------------------------------------------
+
+int	g_signal = 0;
 
 void	ft_usleep(void)
 {
@@ -23,7 +26,6 @@ void	ft_usleep(void)
 
 	try = 0;
 	g_signal = 0;
-	usleep(1);
 	while (!g_signal)
 	{
 		try++;
@@ -31,6 +33,15 @@ void	ft_usleep(void)
 			return ;
 		usleep(1);
 	}
+}
+
+// bonus : ft_signal_handler
+void	ft_signal_handler(int signo)
+{
+	if (signo == SIGUSR1)
+		write(1, "Message received\n", 17);
+	else
+		g_signal = 1;
 }
 
 int	ft_atoi(const char *str)

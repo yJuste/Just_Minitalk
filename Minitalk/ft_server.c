@@ -39,20 +39,22 @@ int	main(void)
 
 void	ft_sigaction(int signo, siginfo_t *info, void *context)
 {
-	static int	i = 0;
-	static int	len = 0;
-	static char	*msg = NULL;
+	static int	i;
+	static int	len;
+	static char	*msg;
 
 	(void)context;
 	if (i <= 30)
-		len = ft_length(signo, len, info->si_pid);
+		len = ft_length(signo, len);
 	else if (i == 31)
 		msg = ft_alloc(len);
 	else if (i < len * 8 + 32)
-		ft_fill(&msg, &i, signo, info->si_pid);
+		ft_fill(&msg, &i, signo);
 	i++;
 	if (i == len * 8 + 32)
 		ft_print(info->si_pid, &msg, &len, &i);
+	else
+		kill(info->si_pid, SIGUSR2);
 }
 
 // bonus : kill() l.3
